@@ -1,5 +1,5 @@
 
-//(document: HTML 문서 전체)에서 모든 .eyes를 선택해서 querySelectorAll로 eyes함수에 담기,
+//(document: HTML 문서 전체)에서 모든 .eyes를 선택해서 querySelectorAll로 eyes변수*에 담기,
 const eyes = document.querySelectorAll('.eyes');//(.eyes 모아주기기)
 
 //eyes((.eyes))를 리스트로 만들어서 forEach로 하나씩 가져옴 -> eye에 할당(?)사용
@@ -22,7 +22,7 @@ eyes.forEach((eye) => {//(모아놓은거 하나씩 불러오기)
     inputWrap.classList.toggle('active');
 
 
-    if (inputWrap.classList.contains('active')) {
+    if (inputWrap.classList.contains('active')) { //eyeIcon.classList.replace ?
       //눈에 슬래시 표시 만들기
       eyeIcon.className = 'fas fa-eye';
       //text로 보이게 만들기기
@@ -61,3 +61,12 @@ eyes.forEach((eye) => {//(모아놓은거 하나씩 불러오기)
 //addEventListener	이벤트 등록하기
 //***classList.toggle()	클래스 추가/제거 자동 전환****
 //input.type	비밀번호 보기/숨기기
+
+
+
+
+
+//수정할 부분**
+//eyeIcon.classList.replace 같은걸 활용해보세요. 
+//이런식으로하면 만약 추가적인 className이 생길때마다 여기에 추가해줘야되기때문에 
+// 유지보수가 하기 힘들어 질겁니다 ㅎㅎ
