@@ -132,3 +132,40 @@ removeErrorOnFocus('confirm-password', 'confirm-password-error');
 
 
 
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+  { email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+  { email: 'codeit4@codeit.com', password: "codeit404!" },
+  { email: 'codeit5@codeit.com', password: "codeit505!" },
+  { email: 'codeit6@codeit.com', password: "codeit606!" },
+];
+
+
+
+function checkFormValidity() {
+  const isValid = validateEmail() && validatePassword();
+  const loginButton = document.getElementById('login-button');
+  loginButton.disabled = !isValid;
+}
+
+// 이메일과 비밀번호 입력 시 유효성 검사 연결
+document.getElementById('email').addEventListener('input', checkFormValidity);
+document.getElementById('password').addEventListener('input', checkFormValidity);
+
+// 로그인 버튼 클릭 이벤트
+document.getElementById('login-button').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const emailInput = document.getElementById('email').value.trim();
+  const passwordInput = document.getElementById('password').value;
+
+  const foundUser = USER_DATA.find(user => user.email === emailInput);
+
+  if (!foundUser || foundUser.password !== passwordInput) {
+    alert('비밀번호가 일치하지 않습니다.');
+  } else {
+    alert('로그인 성공!');
+    window.location.href = '/items';
+  }
+});

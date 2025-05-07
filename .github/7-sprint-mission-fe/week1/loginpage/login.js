@@ -113,19 +113,6 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
 
-// 로그인 버튼 활성화 조건 검사
-function checkFormValidity() {
-  const isLoginPage = window.location.pathname.includes('login');
-  const isSignupPage = window.location.pathname.includes('signup');
-
-  let isValid = validateEmail() && validatePassword();
-  if (isSignupPage) {
-    isValid = isValid && validateConfirmPassword();
-  }
-
-  const loginButton = document.getElementById(isLoginPage ? 'login-button' : 'signup-button');
-  loginButton.disabled = !isValid;
-}
 
 
 
