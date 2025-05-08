@@ -120,7 +120,7 @@ function removeErrorOnFocus(id, errorId) {
 
   input.addEventListener('focus', () => {
     input.classList.remove('error');
-    errorDiv.textContent = '';   
+    errorDiv.textContent = '';
   });
 }
 // focus 이벤트 등록 (빨간 테두리 제거)
@@ -141,31 +141,29 @@ const USER_DATA = [
   { email: 'codeit6@codeit.com', password: "codeit606!" },
 ];
 
-
-
-function checkFormValidity() {
-  const isValid = validateEmail() && validatePassword();
-  const loginButton = document.getElementById('login-button');
-  loginButton.disabled = !isValid;
-}
-
-// 이메일과 비밀번호 입력 시 유효성 검사 연결
-document.getElementById('email').addEventListener('input', checkFormValidity);
-document.getElementById('password').addEventListener('input', checkFormValidity);
-
-// 로그인 버튼 클릭 이벤트
-document.getElementById('login-button').addEventListener('click', function (e) {
+// 회원가입 버튼 클릭 이벤트
+document.getElementById('signup-button').addEventListener('click', function (e) {
   e.preventDefault();
 
+  // 입력값 가져오기
   const emailInput = document.getElementById('email').value.trim();
   const passwordInput = document.getElementById('password').value;
+  const confirmPasswordInput = document.getElementById('confirm-password').value;
 
+
+  if (passwordInput !== confirmPasswordInput) {
+    alert('비밀번호가 일치하지 않습니다.');
+    return;
+  }
+
+  // 이메일 중복 확인
   const foundUser = USER_DATA.find(user => user.email === emailInput);
 
-  if (!foundUser || foundUser.password !== passwordInput) {
-    alert('비밀번호가 일치하지 않습니다.');
+  if (foundUser) {
+    alert('이미 사용 중인 이메일입니다.');
   } else {
-    alert('로그인 성공!');
-    window.location.href = '/items';
+    USER_DATA.push({ email: emailInput, password: passwordInput });
+    alert('회원가입 완료!');
+    window.location.href = '/login';
   }
 });

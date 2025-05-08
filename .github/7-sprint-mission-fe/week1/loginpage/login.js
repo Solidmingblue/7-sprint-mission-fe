@@ -15,10 +15,7 @@ document.querySelectorAll('.eyes').forEach(eye => {
 
 
 
-
 //email
-
-
 function isValidEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
@@ -29,9 +26,6 @@ function validateEmail() {
   const email = document.getElementById('email');
   const errorDiv = document.getElementById('email-error');
   const value = email.value.trim();
-  // const emailwrap = email.closest('.email-wrap')
-  // const emailFocusOut = emailwrap.querySelector('email-error');
-
   if (!value) {
     email.classList.add('error');
     errorDiv.textContent = '이메일을 입력해주세요.';
@@ -51,8 +45,6 @@ document.getElementById('email').addEventListener('blur', () => {
   validateEmail();
   checkFormValidity();
 });
-
-
 
 
 
@@ -91,7 +83,7 @@ function removeErrorOnFocus(id, errorId) {
 
   input.addEventListener('focus', () => {
     input.classList.remove('error');
-    errorDiv.textContent = '';   
+    errorDiv.textContent = '';
   });
 }
 // focus 이벤트 등록 (빨간 테두리 제거)
@@ -121,7 +113,6 @@ function checkFormValidity() {
   const loginButton = document.getElementById('login-button');
   loginButton.disabled = !isValid;
 }
-
 // 이메일과 비밀번호 입력 시 유효성 검사 연결
 document.getElementById('email').addEventListener('input', checkFormValidity);
 document.getElementById('password').addEventListener('input', checkFormValidity);
@@ -135,10 +126,22 @@ document.getElementById('login-button').addEventListener('click', function (e) {
 
   const foundUser = USER_DATA.find(user => user.email === emailInput);
 
+  const modalOpen = document.getElementById('pwModalButton')
+  const modalClose = document.getElementById('CloseBtn')
+  const modalOpenSuccess = document.getElementById('successModalButton')
+  const modalMove = document.getElementById('moveBtn')
+  
+
   if (!foundUser || foundUser.password !== passwordInput) {
-    alert('비밀번호가 일치하지 않습니다.');
+    modalOpen.style.display = 'block';
+    modalClose.addEventListener('click', function () {
+      modalOpen.style.display = 'none';
+    })
   } else {
-    alert('로그인 성공!');
-    window.location.href = '/items';
+    modalOpenSuccess.style.display = 'block';
+    modalMove.addEventListener('click', function () {
+      window.location.href = '/items';
+    })
+    
   }
 });
