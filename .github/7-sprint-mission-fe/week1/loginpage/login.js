@@ -126,6 +126,9 @@ document.getElementById('login-button').addEventListener('click', function (e) {
 
   const foundUser = USER_DATA.find(user => user.email === emailInput);
 
+
+  // 모달 버튼
+  const modalBack = document.getElementById('modalBack')
   const modalOpen = document.getElementById('pwModalButton')
   const modalClose = document.getElementById('CloseBtn')
   const modalOpenSuccess = document.getElementById('successModalButton')
@@ -134,11 +137,14 @@ document.getElementById('login-button').addEventListener('click', function (e) {
 
   if (!foundUser || foundUser.password !== passwordInput) {
     modalOpen.style.display = 'block';
+    modalBack.style.display = 'block';
     modalClose.addEventListener('click', function () {
       modalOpen.style.display = 'none';
+      modalBack.style.display = 'none';
     })
   } else {
     modalOpenSuccess.style.display = 'block';
+    modalBack.style.display = 'block';
     modalMove.addEventListener('click', function () {
       window.location.href = '/items';
     })
