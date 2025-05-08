@@ -151,19 +151,43 @@ document.getElementById('signup-button').addEventListener('click', function (e) 
   const confirmPasswordInput = document.getElementById('confirm-password').value;
 
 
-  if (passwordInput !== confirmPasswordInput) {
-    alert('비밀번호가 일치하지 않습니다.');
-    return;
-  }
+
+
+
+  // 모달 버튼
+const modalBack = document.getElementById('modalBack')
+// const modalOpen = document.getElementById('pwMatchButton')
+const modalAlreadyExist = document.getElementById('alreadyExist')
+const modalClose = document.getElementById('CloseBtn')
+
+// const modalMove = document.getElementById('moveBtn')
+
+
+// //비밀번호 불일치
+//   if (passwordInput !== confirmPasswordInput) {
+//     modalOpen.style.display = 'block';
+//     modalBack.style.display = 'block';
+//     modalClose.addEventListener('click', function () {
+//       modalOpen.style.display = 'none';
+//       modalBack.style.display = 'none';
+//     })
+//   }
+
 
   // 이메일 중복 확인
   const foundUser = USER_DATA.find(user => user.email === emailInput);
 
   if (foundUser) {
-    alert('이미 사용 중인 이메일입니다.');
+    modalAlreadyExist.style.display = 'block';
+    modalBack.style.display = 'block';
+    modalClose.addEventListener('click', function () {
+      modalAlreadyExist.style.display = 'none';
+      modalBack.style.display = 'none';
+    })
   } else {
     USER_DATA.push({ email: emailInput, password: passwordInput });
-    alert('회원가입 완료!');
     window.location.href = '/login';
-  }
+
+}
 });
+

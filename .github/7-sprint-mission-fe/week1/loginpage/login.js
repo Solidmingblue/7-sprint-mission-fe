@@ -124,7 +124,6 @@ document.getElementById('login-button').addEventListener('click', function (e) {
   const emailInput = document.getElementById('email').value.trim();
   const passwordInput = document.getElementById('password').value;
 
-  const foundUser = USER_DATA.find(user => user.email === emailInput);
 
 
   // 모달 버튼
@@ -134,6 +133,7 @@ document.getElementById('login-button').addEventListener('click', function (e) {
   const modalOpenSuccess = document.getElementById('successModalButton')
   const modalMove = document.getElementById('moveBtn')
   
+  const foundUser = USER_DATA.find(user => user.email === emailInput);
 
   if (!foundUser || foundUser.password !== passwordInput) {
     modalOpen.style.display = 'block';
